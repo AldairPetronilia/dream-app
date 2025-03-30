@@ -1,0 +1,80 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+## Frontend
+# dependencies
+/frontend/node_modules
+/frontend/.pnp
+/frontend/.pnp.*
+/frontend/.yarn/*
+!/frontend/.yarn/patches
+!/frontend/.yarn/plugins
+!/frontend/.yarn/releases
+!/frontend/.yarn/versions
+
+# testing
+/frontend/coverage
+
+# next.js
+/frontend/.next/
+/frontend/out/
+
+# production
+/frontend/build
+
+# misc
+/frontend/.DS_Store
+/frontend/*.pem
+
+# debug
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+/frontend/.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+/frontend/.env*
+
+# vercel
+/frontend/.vercel
+
+# typescript
+/frontend/*.tsbuildinfo
+/frontend/next-env.d.ts
+
+## Backend
+# Python environments
+/backend/.venv
+/backend/venv
+/backend/env
+/backend/.env
+/backend/.python-version
+
+# Python bytecode
+/backend/__pycache__/
+/backend/**/__pycache__/
+/backend/*.py[cod]
+/backend/*$py.class
+
+# Distribution / packaging
+/backend/dist/
+/backend/build/
+/backend/*.egg-info/
+/backend/.eggs/
+
+# Testing
+/backend/.pytest_cache/
+/backend/.coverage
+/backend/htmlcov/
+
+# Logs
+/backend/*.log
+
+# Local development
+/backend/.idea/
+/backend/.vscode/
+
+# UV-specific
+/backend/uv/
+/backend/.uv/
+
+.DS_Store
