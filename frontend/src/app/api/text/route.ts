@@ -1,12 +1,14 @@
 import { NextResponse } from 'next/server';
 
+const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+
 export async function POST(request: Request) {
   try {
     // Get the request body (contains the text)
     const body = await request.json();
     
     // Forward the request to the backend
-    const response = await fetch(`http://backend:5000/text`, {
+    const response = await fetch(backendUrl + `/text`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

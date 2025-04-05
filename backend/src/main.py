@@ -29,7 +29,7 @@ def text():
 def main():
     global delay_ms
     parser = argparse.ArgumentParser(description="Web server with /hello endpoint")
-    parser.add_argument("--port", type=int, default=5000, help="Port to run the server on")
+    parser.add_argument("--port", type=int, default=8080, help="Port to run the server on")
     args = parser.parse_args()
     
     app.run(host='0.0.0.0', port=args.port)

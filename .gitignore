@@ -33,6 +33,8 @@
 
 # env files (can opt-in for committing if needed)
 /frontend/.env*
+!/frontend/.env.development
+!/frontend/.env.production
 
 # vercel
 /frontend/.vercel
