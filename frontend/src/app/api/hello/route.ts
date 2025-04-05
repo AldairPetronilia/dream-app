@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
-
+const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 export async function GET() {
   try {
     // This call happens from inside the container, so "backend" domain works
-    const response = await fetch(`http://backend:5000/hello`);
+    const response = await fetch(backendUrl + `/hello`);
     const data = await response.json();
     return NextResponse.json(data);
   } catch (error) {
