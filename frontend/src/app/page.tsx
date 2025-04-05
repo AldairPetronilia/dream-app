@@ -11,6 +11,8 @@ interface ResponseEntry {
 export default function Home() {
   // State to store response data
   const [responses, setResponses] = useState<ResponseEntry[]>([]);
+  // New state for text input
+  const [inputText, setInputText] = useState("");
 
   const handleHelloClick = async () => {
     try {
@@ -68,6 +70,47 @@ export default function Home() {
     }
   };
 
+  // New handler for text submission
+  const handleTextSubmit = async () => {
+    if (!inputText.trim()) return; // Don't send empty text
+    
+    try {
+      const response = await fetch(`/api/text`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ text: inputText }),
+      });
+      
+      const data = await response.json();
+      console.log("Text response:", data);
+      
+      // Add entry to responses
+      setResponses(prev => [
+        ...prev,
+        {
+          code: response.status,
+          message: data.message.text || JSON.stringify(data),
+          time: new Date().toLocaleTimeString()
+        }
+      ]);
+      
+      // Clear the input field after submission
+      setInputText("");
+    } catch (error) {
+      console.error("Error calling /api/text:", error);
+      setResponses(prev => [
+        ...prev,
+        {
+          code: 0,
+          message: String(error),
+          time: new Date().toLocaleTimeString()
+        }
+      ]);
+    }
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-8">
       <main className="flex flex-col items-center gap-6">
@@ -86,6 +129,25 @@ export default function Home() {
             className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] px-6 py-3 font-medium hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a]"
           >
             Default
+          </button>
+        </div>
+        
+        {/* New text input section */}
+        <div className="w-full max-w-md mt-4">
+          <h2 className="text-xl font-bold mb-3">Send Text to API</h2>
+          <textarea
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+            placeholder="Enter text to send to API"
+            className="w-full p-3 border rounded dark:bg-gray-800 dark:border-gray-700"
+            rows={4}
+          />
+          <button
+            onClick={handleTextSubmit}
+            className="mt-3 rounded-full border border-solid border-transparent bg-green-600 text-white px-6 py-3 font-medium hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed w-full"
+            disabled={!inputText.trim()}
+          >
+            Send Text
           </button>
         </div>
         

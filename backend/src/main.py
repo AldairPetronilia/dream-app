@@ -1,6 +1,7 @@
 import argparse
 from flask import Flask
 from flask import jsonify
+from flask import request
 
 app = Flask(__name__)
 
@@ -16,6 +17,14 @@ def hello():
 def default():
     print("Default endpoint")  # This prints to logs
     return {"status": "ok", "message": "Default endpoint"}
+
+@app.route('/text', methods=['POST'])
+def text():
+    print("Text endpoint (POST)")
+    # Get data from the request
+    data = request.get_json()
+    # Return status and received data
+    return jsonify({"status": "ok", "message": data})
 
 def main():
     global delay_ms
