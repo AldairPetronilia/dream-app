@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: backend
+Version: 0.1.0
+Summary: Add your description here
+Requires-Python: >=3.13
+Description-Content-Type: text/markdown
+Requires-Dist: flask>=3.1.0
+Requires-Dist: numpy>=1.26.0
+Requires-Dist: sentence-transformers>=2.2.2
+Requires-Dist: flask-cors>=4.0.0
